@@ -1,0 +1,10 @@
+PODS:
+  - lua (5.2.3)
+
+DEPENDENCIES:
+  - lua (= 5.2.3)
+
+SPEC CHECKSUMS:
+  lua: c212adef6a9301a007e40e068e923d595a629691
+
+COCOAPODS: 0.35.0
