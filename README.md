@@ -5,7 +5,7 @@ This project is an example of integrating Lua with an iOS program. It's not mean
 
 Steps taken:
 
-1. Add Lua Source to Project
+1. Add Lua Dependency to Project
 2. Write a [Bridging Header](https://developer.apple.com/library/ios/documentation/swift/conceptual/buildingcocoaapps/MixandMatch.html)
 3. There is no step 3
 
@@ -21,10 +21,12 @@ So it pays to have a Swift class to wrap the details of dealing with Lua. You cl
 
 #### The Steps in Detail
 
-###### 1. Add Lua Source to Project
+###### 1. Add Lua Dependency to Project
 
-Unless/until the Lua distribution changes dramatically, all you need to do is download the Lua version you want and add (almost) all of the files in the `src` directory to your Xcode project. Do not add `lua.c` and `luac.c`. These are the implementations of the stand-alone interpreter and compiler, respectively. You will not need these in your iOS app. Moreoever, they both contain `main` methods, so including them will generate linker errors as they will conflict with your app's `main` method.
-
+- Install [CocoaPods](http://guides.cocoapods.org/using/getting-started.html)
+- create a `Podfile` in the root, with this line `pod 'lua', '5.2.3'`
+- run `pod install` in the project folder
+- From now on open `LuaInterp.xcworkspace` in Xcode instead of `LuaInterp.xcproject`
 
 ###### 2. Write a Bridging Header
 
@@ -54,11 +56,11 @@ For example, you cannot use `lua_pop(L, n)` since it's a macro and have to resor
 
 The original version of this project (circa 2010) used Objective C. As of October 2014, it has been rewritten in Swift and requires Xcode 6.1. The target OS is iOS 8.1.
 
-I have a few improvements in mind, although it's not likely I'll get to them in a timely manner. 
+I have a few improvements in mind, although it's not likely I'll get to them in a timely manner.
 
 If you want to integrate Lua with your iOS project, there are a number of available projects that are perhaps a better starting point than this one:
 
-* [ObjC-Lua](https://github.com/PedestrianSean/ObjC-Lua), implements a nice bridge in the style of iOS 7's JavaScriptCore. It is available as a [CocoaPod](http://cocoapods.org). 
+* [ObjC-Lua](https://github.com/PedestrianSean/ObjC-Lua), implements a nice bridge in the style of iOS 7's JavaScriptCore. It is available as a [CocoaPod](http://cocoapods.org).
 * [lua-on-ios](https://github.com/narfdotpl/lua-on-ios) leads you through a sequence of refinements, with each step a sepeart git commit
 * a quick search on [Github](github.com) or [Google](google.com) will turn up a score of others
 
@@ -72,7 +74,7 @@ If you want to integrate Lua with your iOS project, there are a number of availa
 ## This project
 
 Copyright &copy; 2010-2014 Matthew M. Burke
- 
+
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
 "Software"), to deal in the Software without restriction, including
@@ -80,10 +82,10 @@ without limitation the rights to use, copy, modify, merge, publish,
 distribute, sublicense, and/or sell copies of the Software, and to
 permit persons to whom the Software is furnished to do so, subject to
 the following conditions:
- 
+
 The above copyright notice and this permission notice shall be
 included in all copies or substantial portions of the Software.
- 
+
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -114,4 +116,3 @@ Permission is hereby granted, without written agreement and without license or r
 * The origin of this logo must not be misrepresented; you must not claim that you drew the original logo.
 * The only modification you can make is to adapt the orbiting text to your product name.
 * The logo can be used in any scale as long as the relative proportions of its elements are maintained.
-
